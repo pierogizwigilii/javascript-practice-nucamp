@@ -26,11 +26,11 @@
         }
 
         function checkHeight (attraction, height) {
-            if (height >= WAVE_POOL_MIN_HEIGHT && attraction === "wave") {
+            if (attraction === "wave" && height >= WAVE_POOL_MIN_HEIGHT) { //make sure to have attraction first and then height, same as it is in the function declaration in parameters.
                 return true;
-            } else if (height >= WATERSLIDE_MIN_HEIGHT && attraction === "water") {
+            } else if (attraction === "water" && height >= WATERSLIDE_MIN_HEIGHT) {
                 return true;
-            } else if (height >= LAZY_RIVER_MIN_HEIGHT && attraction === "river") {
+            } else if (attraction === "river" && height >= LAZY_RIVER_MIN_HEIGHT) {
                 return true;
             } else {
                 return false;
