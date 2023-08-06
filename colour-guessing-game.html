@@ -37,11 +37,11 @@
         function checkGuess(guess, target) {
             let correct = false;
             if(!COLORS_ARRAY.includes(guess)) {
-                prompt("Sorry, I don't recognise your colour.\n\nPlease try again.");
+                alert("Sorry, I don't recognise your colour.\n\nPlease try again.");
             } else if (guess > target) {
-                prompt("Sorry your guess is incorrect.\n\nHint: your colour is alphabetically higher than mine.\n\nPlease try again.");
+                alert("Sorry your guess is incorrect.\n\nHint: your colour is alphabetically higher than mine.\n\nPlease try again.");
             } else if (guess < target) {
-                prompt("Sorry your guess is incorrect.\n\nHint: your colour is alphabetically lower than mine.\n\nPlease try again.");
+                alert("Sorry your guess is incorrect.\n\nHint: your colour is alphabetically lower than mine.\n\nPlease try again.");
             } else {
                 correct = true;
                 document.body.style.background = guess;
