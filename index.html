@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>JSON Example</title>
+</head>
+<body>
+    <script type="text/javascript">
+        let companies = `[
+        {
+        "name": "Nucamp",
+        "number_of_employees": 150,
+        "CEO": "Ludo Fourrage",
+        "glassdoorRating": 5.0
+    },
+    {
+        "name": "Small Startup",
+        "number_of_employees": 5,
+        "CEO": null,
+        "glassdoorRating": 4.7
+    }
+    ]`;
+
+    companies = JSON.parse(companies);
+    console.log(companies);
+    </script>
+</body>
+</html>
