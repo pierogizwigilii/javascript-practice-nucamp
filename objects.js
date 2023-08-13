@@ -48,12 +48,12 @@ console.log(chris)
 //console.log the method of in the object
 chris.nameCall();
 
-//JSON stringify converts and object to a string
+//JSON stringify converts and object to a string/JSON
 let data1 = {name: "John Doe", age: 30}
 let json1 = JSON.stringify(data1)
 console.log(json1)
 
-//JSON parse converts a string to object in Javascript
+//JSON parse converts a string to object/Javascript
 let json2 = `{"name": "John Doe", "age": 30}`
 let data2 = JSON.parse(json2)
 console.log(data2)
