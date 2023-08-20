@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matching Game</title>
+    <style>
+        img {
+            position: absolute;
+        }
+        
+        div {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+        }
+
+        #rightSide {
+            left: 500px;
+            border-left: 1px solid;
+        }
+    </style>
+</head>
+<body onload="generateFaces()"> 
+    <h1>Matching Game</h1>
+    <p>Click on the extra smiling face on the left.</p>
+
+    <div id="leftSide">
+        
+    </div>
+    <div id="rightSide">
+
+    </div>
+
+    <script>
+        let numberOfFaces = 5;
+        const theLeftSide = document.getElementById("leftSide");
+        const theRightSide = document.getElementById("rightSide");
+
+        function generateFaces() { //To call the generateFaces function when the webpage is loaded add <body onload="generateFaces()"> event handler to the body element
+            for (let i = 0; i < numberOfFaces; i++) { //this will iterate the loop numberOfFaces times, however much the numberOfFaces is, it will iterate through that, go through loop that many times. this will make the images of the smiley face appear on left side.
+                const face = document.createElement("img");
+                face.src = 'images/smile.png';
+                const randomTop = Math.floor(Math.random() * 400) + 1;
+                const randomLeft = Math.floor(Math.random() * 400) + 1;
+                face.style.top = randomTop + 'px'; //setting the style of the face variable which adds the smiley face images to the number stored in randomTop
+                face.style.left = randomLeft + 'px';
+                theLeftSide.appendChild(face);
+            } //The first time that the generateFaces function is run, the for loop inside it should iterate 5 times, causing 5 smiley face images to appear at random locations on the left side. 
+            const leftSideImages = theLeftSide.cloneNode(true); //cloning the left side images and all of its children but not yet attached to DOM
+            leftSideImages.removeChild(leftSideImages.lastChild); //removing last child of left side images ensures that there is one less smiley face on the right side.
+            theRightSide.appendChild(leftSideImages);
+            theLeftSide.addEventListener("click", nextLevel);
+            document.body.addEventListener("click", gameOver); // when clicked on anywhere in body - game over
+        } 
+        
+        function nextLevel(event) {
+            event.stopPropagation(); //ensure that the event does not also get applied to other elements in the web page, such as other faces. That would trigger the function multiple times, which is not what we want. 
+            numberOfFaces += 5; //increases the number stored in numberOfFaces by 5, so that the next time the faces are generated there are 5 more than before on both sides 
+            while (theLeftSide.firstChild) {
+                theLeftSide.removeChild(theLeftSide.firstChild); //Each time the player clicks on the correct face, all faces must be removed before a new set of faces is generated and added to the page. 
+            }
+            while (theRightSide.firstChild) { //you learned how to remove all child nodes of a parent node using a while loop. Use that knowledge to add two while loops to the nextLevel function to remove all child nodes of theLeftSide and theRightSide.
+                theRightSide.removeChild(theRightSide.firstChild)
+            }
+            generateFaces(); //means that a new set of faces is generated. Because of the increase in value of numberOfFaces, there will be 5 more faces than before on both sides.
+        }   
+
+        function gameOver() {
+            alert("Game over!");
+            document.body.removeEventListener("click", gameOver);
+            theLeftSide.lastChild.removeEventListener("click", nextLevel);
+        }
+
+    </script>
+</body>
+</html>
