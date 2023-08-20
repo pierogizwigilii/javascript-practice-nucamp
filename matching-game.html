@@ -51,8 +51,8 @@
             const leftSideImages = theLeftSide.cloneNode(true); //cloning the left side images and all of its children but not yet attached to DOM
             leftSideImages.removeChild(leftSideImages.lastChild); //removing last child of left side images ensures that there is one less smiley face on the right side.
             theRightSide.appendChild(leftSideImages);
-            theLeftSide.addEventListener("click", nextLevel);
-            document.body.addEventListener("click", gameOver); // when clicked on anywhere in body - game over
+            theLeftSide.lastChild.addEventListener('click', nextLevel);
+            document.body.addEventListener("click", gameOver);      
         } 
         
         function nextLevel(event) {
@@ -62,7 +62,7 @@
                 theLeftSide.removeChild(theLeftSide.firstChild); //Each time the player clicks on the correct face, all faces must be removed before a new set of faces is generated and added to the page. 
             }
             while (theRightSide.firstChild) { //you learned how to remove all child nodes of a parent node using a while loop. Use that knowledge to add two while loops to the nextLevel function to remove all child nodes of theLeftSide and theRightSide.
-                theRightSide.removeChild(theRightSide.firstChild)
+                theRightSide.removeChild(theRightSide.firstChild);
             }
             generateFaces(); //means that a new set of faces is generated. Because of the increase in value of numberOfFaces, there will be 5 more faces than before on both sides.
         }   
@@ -70,9 +70,8 @@
         function gameOver() {
             alert("Game over!");
             document.body.removeEventListener("click", gameOver);
-            theLeftSide.lastChild.removeEventListener("click", nextLevel);
+            theLeftSide.lastChild.addEventListener("click", nextLevel);        
         }
-
     </script>
 </body>
 </html>
